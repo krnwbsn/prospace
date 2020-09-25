@@ -16,8 +16,13 @@ const writeData = (data) =>
 router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json());
 
-router.get('/', function (req, res) {
-  res.status(200).json(office);
+router.get('/:companyName', function (req, res) {
+  const { companyName } = req.params;
+  const data = office.filter(
+    (item) => item.companyName.toLowerCase() === companyName.toLowerCase()
+  );
+
+  res.status(200).json(data);
 });
 
 module.exports = router;
