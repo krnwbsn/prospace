@@ -25,4 +25,29 @@ router.get('/:companyName', function (req, res) {
   res.status(200).json(data);
 });
 
+router.post('/', function (req, res) {
+  const id = moment().unix() + 12;
+  const { companyName, officeName, lat, log, startDate } = req.body;
+  const cap = (text) => {
+    return text.replace(/(^\w{1})|(\s{1}\w{1})/g, (match) =>
+      match.toUpperCase()
+    );
+  };
+
+  const item = {
+    officeId: id,
+    companyName: cap(companyName),
+    officeName: cap(officeName),
+    location: { lat: parseFloat(lat), log: parseFloat(log) },
+    startDate: moment(startDate).format('YYYY-MM-DD'),
+    createdDate: moment().format('YYYY-MM-DD'),
+    updatedDate: '',
+  };
+
+  office.push(item);
+  writeData(office);
+
+  res.status(201).json(office);
+});
+
 module.exports = router;
