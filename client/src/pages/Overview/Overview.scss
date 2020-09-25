@@ -2,106 +2,112 @@
 
 .container {
   width: 100%;
-  display: flex;
-  align-self: center;
-  padding: 0px 10px;
+  padding: 20px 10px;
   background: #ffffff !important;
 
-  .form-box {
-    margin: auto;
-    margin-top: 20px;
+  .box {
     border: 2px solid #ebecf0;
     border-radius: 10px;
+    margin: auto;
 
-    .content {
-      padding: 0px 10px;
+    .divider-horizontal {
+      border-bottom: 2px solid #ebecf0;
+      margin: 5px 5px;
+    }
 
-      h2 {
-        font-weight: 400;
-        color: #808080;
-      }
+    .form-box {
+      display: flex;
 
-      .form-section {
-        margin-top: -10px;
+      .content {
         padding: 0px 10px;
 
-        .form-group {
-          margin: 0px;
+        h2 {
+          font-weight: 400;
+          color: #808080;
+        }
 
-          label {
-            font-weight: 700;
-          }
+        .form-section {
+          margin-top: -10px;
+          padding: 0px 10px;
 
-          input {
-            border-radius: 5px;
-            margin-top: -5px;
-          }
+          .form-group {
+            margin: 0px;
 
-          button {
-            width: 100%;
-            border-radius: 5px;
-            margin: 20px 0px;
-            background-color: #ebecf0;
-            color: #808080;
-            font-weight: 600;
-            border: none;
-          }
-
-          .select {
-            color: #a9a9a9;
-            margin-top: -5px;
-
-            .ant-select-selector {
-              border-radius: 5px;
-              height: 32px;
+            label {
+              font-weight: 700;
             }
-          }
 
-          .ant-form-item-control {
-            &-input {
-              &-content {
-                .date-picker {
-                  width: 100%;
-                  margin-top: -5px !important;
-                  height: 32px !important;
-                  border-radius: 5px;
+            input {
+              border-radius: 5px;
+              margin-top: -5px;
+            }
+
+            button {
+              width: 100%;
+              border-radius: 5px;
+              margin: 20px 0px;
+              background-color: #ebecf0;
+              color: #808080;
+              font-weight: 600;
+              border: none;
+            }
+
+            .select {
+              color: #a9a9a9;
+              margin-top: -5px;
+
+              .ant-select-selector {
+                border-radius: 5px;
+                height: 32px;
+              }
+            }
+
+            .ant-form-item-control {
+              &-input {
+                &-content {
+                  .date-picker {
+                    width: 100%;
+                    margin-top: -5px !important;
+                    height: 32px !important;
+                    border-radius: 5px;
+                  }
                 }
               }
             }
           }
-        }
 
-        .phone-number {
-          display: flex;
-          justify-content: space-between;
+          .phone-number {
+            display: flex;
+            justify-content: space-between;
 
-          .code {
-            width: 20%;
-            margin-right: 4%;
+            .code {
+              width: 20%;
+              margin-right: 4%;
+            }
+            .number {
+              width: 76%;
+            }
           }
-          .number {
-            width: 76%;
-          }
-        }
 
-        .location {
-          display: flex;
-          justify-content: space-between;
+          .location {
+            display: flex;
+            justify-content: space-between;
 
-          .lat {
-            width: 48%;
-            margin-right: 4%;
-          }
-          .log {
-            width: 48%;
+            .lat {
+              width: 48%;
+              margin-right: 4%;
+            }
+            .log {
+              width: 48%;
+            }
           }
         }
       }
-    }
 
-    .divider {
-      border-right: 2px solid #ebecf0;
-      margin: 5px 0px;
+      .divider-vertical {
+        border-right: 2px solid #ebecf0;
+        margin: 5px 0px;
+      }
     }
   }
 }
