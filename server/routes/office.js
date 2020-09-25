@@ -50,4 +50,13 @@ router.post('/', function (req, res) {
   res.status(201).json(office);
 });
 
+router.delete('/:officeId', function (req, res) {
+  const { officeId } = req.params;
+  const data = office.filter((item) => item.officeId !== parseInt(officeId));
+  writeData(data);
+
+  console.log(`data ${officeId} removed successfully`);
+  res.status(204).send({message: `data removed successfully`});
+});
+
 module.exports = router;

@@ -1,6 +1,6 @@
 [
   {
-    "officeId": 1,
+    "officeId": 1601026287,
     "companyName": "Alibaba",
     "officeName": "Hangzhou Binjuang Campus",
     "location": {
@@ -12,55 +12,31 @@
     "updatedDate": ""
   },
   {
-    "officeId": 2,
+    "officeId": 1601026288,
     "companyName": "Alibaba",
-    "officeName": "Hong Kong Office",
+    "officeName": "Hangzhou Binjuang Campus",
     "location": {
       "lat": 103.12,
       "log": 20.44
     },
-    "startDate": "2003-06-20",
+    "startDate": "1997-06-20",
     "createdDate": "2020-09-25",
     "updatedDate": ""
   },
   {
-    "officeId": 3,
+    "officeId": 1601026289,
     "companyName": "Alibaba",
-    "officeName": "Taipei City Office:",
+    "officeName": "Hangzhou Binjuang Campus",
     "location": {
       "lat": 103.12,
       "log": 20.44
     },
-    "startDate": "2007-06-20",
+    "startDate": "1997-06-20",
     "createdDate": "2020-09-25",
     "updatedDate": ""
   },
   {
-    "officeId": 4,
-    "companyName": "Alibaba",
-    "officeName": "U.S. Office",
-    "location": {
-      "lat": 103.12,
-      "log": 20.44
-    },
-    "startDate": "2015-06-20",
-    "createdDate": "2020-09-25",
-    "updatedDate": ""
-  },
-  {
-    "officeId": 5,
-    "companyName": "Alibaba",
-    "officeName": "U.K. Office:",
-    "location": {
-      "lat": 103.12,
-      "log": 20.44
-    },
-    "startDate": "2012-06-20",
-    "createdDate": "2020-09-25",
-    "updatedDate": ""
-  },
-  {
-    "officeId": 1601020445,
+    "officeId": 1601026290,
     "companyName": "Alibaba",
     "officeName": "Hangzhou Binjuang Campus",
     "location": {
