@@ -1,4 +1,4 @@
-import Company from './Company';
-import Office from './Office';
+import Overview from './Overview';
+import Offices from './Offices';
 
-export { Company, Office };
+export { Overview, Offices };

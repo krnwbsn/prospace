@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
-import company from './company';
-import office from './office';
+import overview from './overview';
+import offices from './offices';
 
 const rootReducer = combineReducers({
-  company,
-  office,
+  overview,
+  offices,
 });
 
 export default rootReducer;

@@ -1,17 +1,17 @@
-import { Company, Office } from '../pages';
+import { Overview, Offices } from '../pages';
 
 const router = [
   {
-    name: 'Company',
-    component: Company,
+    name: 'Overview',
+    component: Overview,
     exact: true,
     path: '/'
   },
   {
-    name: 'Office',
-    component: Office,
+    name: 'Offices',
+    component: Offices,
     exact: true,
-    path: '/office/:companyName'
+    path: '/offices/:companyName'
   },
 ];
 
