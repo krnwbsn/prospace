@@ -9,6 +9,7 @@ import {
   Select,
   DatePicker,
 } from 'antd';
+import { Card } from '../../components';
 import './Overview.scss';
 import 'antd/dist/antd.css';
 
@@ -138,7 +139,10 @@ const Overview = () => {
           <div className="divider-horizontal" />
           <Row className="form-box">
             <Col className="content">
-              <h2>Companies</h2>
+              <div>
+                <h2>Companies</h2>
+              </div>
+              <Card />
             </Col>
           </Row>
         </div>
