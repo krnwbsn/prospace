@@ -53,4 +53,12 @@ router.post('/', function (req, res) {
   res.status(201).json(company);
 });
 
+router.delete('/:id', function (req, res) {
+  const { id } = req.params;
+  const data = company.filter((item) => item.id !== parseInt(id));
+  writeData(data);
+
+  res.status(204);
+});
+
 module.exports = router;

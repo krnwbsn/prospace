@@ -1,17 +1,5 @@
 [
   {
-    "id": 1601015722,
-    "companyName": "Amazon",
-    "companyAddress": "410 Terry Ave N. Seattle, WA 98109",
-    "companyRevenue": 9999999,
-    "phoneNumber": {
-      "code": "(206)",
-      "number": "256-1000"
-    },
-    "createdDate": "2020-09-25",
-    "updatedDate": ""
-  },
-  {
     "id": 1601017382,
     "companyName": "Alibaba",
     "companyAddress": "969 West Wen Yi Road Yu Hang District Hangzhou 311121",
@@ -25,6 +13,18 @@
   },
   {
     "id": 1601017439,
+    "companyName": "Google",
+    "companyAddress": "410 Terry Ave N. Seattle, WA 98109",
+    "companyRevenue": 9999999,
+    "phoneNumber": {
+      "code": "(206)",
+      "number": "266-1000"
+    },
+    "createdDate": "2020-09-25",
+    "updatedDate": ""
+  },
+  {
+    "id": 1601025314,
     "companyName": "Amazon",
     "companyAddress": "410 Terry Ave N. Seattle, WA 98109",
     "companyRevenue": 9999999,
