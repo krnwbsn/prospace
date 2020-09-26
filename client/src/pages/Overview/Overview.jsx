@@ -142,7 +142,12 @@ const Overview = () => {
               <div>
                 <h2>Companies</h2>
               </div>
-              <Card />
+              <Row className="cards">
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+              </Row>
             </Col>
           </Row>
         </div>

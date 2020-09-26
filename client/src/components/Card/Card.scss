@@ -1,0 +1,38 @@
+.card {
+  width: 360px !important;
+  padding: 12px;
+  border: 2px solid #ebecf0;
+  border-radius: 10px;
+  margin: 10px;
+
+  .company-header {
+    display: flex;
+    margin-bottom: -5px;
+
+    h3 {
+      font-weight: 700;
+      font-size: 18px;
+    }
+
+    .icon {
+      width: 18px;
+      margin-left: auto;
+      margin-top: -15px;
+    }
+  }
+  .divider-horizontal {
+    width: 100%;
+    margin: 0px !important;
+  }
+  .company-informations {
+    margin-top: 5px;
+    
+    .detail {
+      font-weight: 700;
+    }
+
+    p {
+      color: #808080;
+    }
+  }
+}

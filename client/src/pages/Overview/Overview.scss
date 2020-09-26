@@ -21,6 +21,10 @@
       .content {
         padding: 0px 10px;
 
+        .cards {
+          max-width: 760px !important;
+        }
+
         h2 {
           font-weight: 400;
           color: #808080;
