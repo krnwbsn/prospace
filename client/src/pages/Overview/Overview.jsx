@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import {
   Form,
   Input,
@@ -12,11 +12,18 @@ import {
 import { Card } from '../../components';
 import './Overview.scss';
 import 'antd/dist/antd.css';
+import { loadDataCompany } from '../../configs/actions';
+import { connect } from 'react-redux';
 
-const Overview = () => {
+const Overview = (props) => {
+  const { data, loadDataCompany } = props;
   const { Option } = Select;
   const [form] = Form.useForm();
   const [requiredMark, setRequiredMarkType] = useState('optional');
+
+  useEffect(() => {
+    loadDataCompany();
+  }, [loadDataCompany]);
 
   const onRequiredTypeChange = ({ requiredMark }) => {
     setRequiredMarkType(requiredMark);
@@ -143,10 +150,16 @@ const Overview = () => {
                 <h2>Companies</h2>
               </div>
               <Row className="cards">
-                <Card />
-                <Card />
-                <Card />
-                <Card />
+                {data.map((item) => (
+                  <Card
+                    key={item.id}
+                    companyName={item.companyName}
+                    companyAddress={item.companyAddress}
+                    companyRevenue={item.companyRevenue}
+                    code={item.phoneNumber.code}
+                    number={item.phoneNumber.number}
+                  />
+                ))}
               </Row>
             </Col>
           </Row>
@@ -156,4 +169,16 @@ const Overview = () => {
   );
 };
 
-export default Overview;
+const mapStateToProps = (state) => {
+  return {
+    data: state.overview.companies,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    loadDataCompany: () => dispatch(loadDataCompany()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Overview);
