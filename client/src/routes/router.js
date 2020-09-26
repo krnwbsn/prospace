@@ -11,7 +11,7 @@ const router = [
     name: 'Offices',
     component: Offices,
     exact: true,
-    path: '/offices/:companyName'
+    path: '/offices/:id'
   },
 ];
 
