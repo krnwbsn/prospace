@@ -37,6 +37,8 @@ router.post('/', function (req, res) {
     number,
   } = req.body;
 
+  console.log(companyName, companyAddress, companyRevenue, code, number);
+
   const item = {
     id: id,
     companyName: companyName,

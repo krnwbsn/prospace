@@ -12,22 +12,29 @@ import {
 import { Card } from '../../components';
 import './Overview.scss';
 import 'antd/dist/antd.css';
-import { loadDataCompany } from '../../configs/actions';
+import {
+  loadDataCompany,
+  deleteDataCompany,
+  postDataCompany,
+} from '../../configs/actions';
 import { connect } from 'react-redux';
 
 const Overview = (props) => {
-  const { data, loadDataCompany } = props;
+  const { dataCompanies, loadDataCompany, postDataCompany } = props;
   const { Option } = Select;
   const [form] = Form.useForm();
-  const [requiredMark, setRequiredMarkType] = useState('optional');
+  const initialDataCompanyState = {
+    companyName: '',
+    companyAddress: '',
+    companyRevenue: '',
+    code: '',
+    number: '',
+  };
+  const [companyPayload, setCompanyPayload] = useState(initialDataCompanyState);
 
   useEffect(() => {
     loadDataCompany();
   }, [loadDataCompany]);
-
-  const onRequiredTypeChange = ({ requiredMark }) => {
-    setRequiredMarkType(requiredMark);
-  };
 
   const handleChange = (value) => {
     console.log(`selected ${value}`);
@@ -35,6 +42,17 @@ const Overview = (props) => {
 
   const onChange = (date, dateString) => {
     console.log(date, dateString);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    postDataCompany(companyPayload);
+    setCompanyPayload(initialDataCompanyState);
+  };
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setCompanyPayload({ ...companyPayload, [name]: value });
   };
 
   return (
@@ -50,35 +68,58 @@ const Overview = (props) => {
                 className="form-section"
                 form={form}
                 layout="vertical"
-                initialValues={{
-                  requiredMark,
-                }}
-                onValuesChange={onRequiredTypeChange}
-                requiredMark={requiredMark}
               >
                 <Form.Item className="form-group" label="Name:" required>
-                  <Input placeholder="name" />
+                  <Input
+                    type="text"
+                    placeholder="name"
+                    name="companyName"
+                    value={companyPayload.companyName}
+                    onChange={handleInputChange}
+                  />
                 </Form.Item>
                 <Form.Item className="form-group" label="Address:" required>
-                  <Input placeholder="address" />
+                  <Input
+                    type="text"
+                    placeholder="address"
+                    name="companyAddress"
+                    value={companyPayload.companyAddress}
+                    onChange={handleInputChange}
+                  />
                 </Form.Item>
                 <Form.Item className="form-group" label="Revenue:" required>
-                  <Input type="number" placeholder="revenue" />
+                  <Input
+                    type="number"
+                    placeholder="revenue"
+                    name="companyRevenue"
+                    value={companyPayload.companyRevenue}
+                    onChange={handleInputChange}
+                  />
                 </Form.Item>
                 <Form.Item
                   className="form-group phone-number"
                   label="Phone No:"
                   required
                 >
-                  <Input type="number" className="code" placeholder="code" />
+                  <Input
+                    type="number"
+                    className="code"
+                    placeholder="code"
+                    name="code"
+                    value={companyPayload.code}
+                    onChange={handleInputChange}
+                  />
                   <Input
                     type="number"
                     className="number"
                     placeholder="number"
+                    name="number"
+                    value={companyPayload.number}
+                    onChange={handleInputChange}
                   />
                 </Form.Item>
                 <Form.Item className="form-group">
-                  <Button type="secondary">Create</Button>
+                  <Button type="submit" onClick={(event) => handleSubmit(event)}>Create</Button>
                 </Form.Item>
               </Form>
             </Col>
@@ -87,16 +128,7 @@ const Overview = (props) => {
               <div>
                 <h2>Create Office</h2>
               </div>
-              <Form
-                className="form-section"
-                form={form}
-                layout="vertical"
-                initialValues={{
-                  requiredMark,
-                }}
-                onValuesChange={onRequiredTypeChange}
-                requiredMark={requiredMark}
-              >
+              <Form className="form-section" form={form} layout="vertical">
                 <Form.Item className="form-group" label="Name:" required>
                   <Input placeholder="name" />
                 </Form.Item>
@@ -150,7 +182,7 @@ const Overview = (props) => {
                 <h2>Companies</h2>
               </div>
               <Row className="cards">
-                {data.map((item) => (
+                {dataCompanies.map((item) => (
                   <Card
                     key={item.id}
                     companyName={item.companyName}
@@ -171,13 +203,14 @@ const Overview = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    data: state.overview.companies,
+    dataCompanies: state.overview.companies,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     loadDataCompany: () => dispatch(loadDataCompany()),
+    postDataCompany: (payload) => dispatch(postDataCompany(payload)),
   };
 };
 
