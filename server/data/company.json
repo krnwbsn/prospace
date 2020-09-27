@@ -1,86 +1,38 @@
 [
   {
-    "id": 1601017382,
+    "id": 1601226734,
+    "companyName": "Google",
+    "companyAddress": "1600 Amphitheatre Parkway Mountain View CA 94043 United States",
+    "companyRevenue": 9999999,
+    "phoneNumber": {
+      "code": "(190)",
+      "number": "123456789"
+    },
+    "createdDate": "2020-09-28",
+    "updatedDate": ""
+  },
+  {
+    "id": 1601226735,
+    "companyName": "Amazon",
+    "companyAddress": "410 Terry Ave N. Seattle WA 98109",
+    "companyRevenue": 9999999,
+    "phoneNumber": {
+      "code": "(206)",
+      "number": "2661000"
+    },
+    "createdDate": "2020-09-28",
+    "updatedDate": ""
+  },
+  {
+    "id": 1601226736,
     "companyName": "Alibaba",
     "companyAddress": "969 West Wen Yi Road Yu Hang District Hangzhou 311121",
     "companyRevenue": 9999999,
     "phoneNumber": {
-      "code": "(86)",
-      "number": "571-8502-2088"
+      "code": "(56)",
+      "number": "57185022088"
     },
-    "createdDate": "2020-09-25",
-    "updatedDate": ""
-  },
-  {
-    "id": 1601017439,
-    "companyName": "Google",
-    "companyAddress": "410 Terry Ave N. Seattle, WA 98109",
-    "companyRevenue": 9999999,
-    "phoneNumber": {
-      "code": "(206)",
-      "number": "266-1000"
-    },
-    "createdDate": "2020-09-25",
-    "updatedDate": ""
-  },
-  {
-    "id": 1601025314,
-    "companyName": "Amazon",
-    "companyAddress": "410 Terry Ave N. Seattle, WA 98109",
-    "companyRevenue": 9999999,
-    "phoneNumber": {
-      "code": "(206)",
-      "number": "266-1000"
-    },
-    "createdDate": "2020-09-25",
-    "updatedDate": ""
-  },
-  {
-    "id": 1601111494,
-    "companyName": "Tokopedia",
-    "companyAddress": "Jl. Lkr. Luar Barat No.101, RT.13, Rw. Buaya, Jakarta",
-    "companyRevenue": 134679852,
-    "phoneNumber": {
-      "code": "(12)",
-      "number": ""
-    },
-    "createdDate": "2020-09-26",
-    "updatedDate": ""
-  },
-  {
-    "id": 1601111762,
-    "companyName": "Bukalapak",
-    "companyAddress": "Jl. Ir. H. Juanda No.94, Lebakgede, Kecamatan Coblong, Kota Bandung, Jawa Barat 40132",
-    "companyRevenue": 4568795132,
-    "phoneNumber": {
-      "code": "(465)",
-      "number": "32159795132"
-    },
-    "createdDate": "2020-09-26",
-    "updatedDate": ""
-  },
-  {
-    "id": 1601111925,
-    "companyName": "Bhinneka",
-    "companyAddress": "Jl. Gn. Sahari No.73C, RT.9/RW.7, Gn. Sahari Sel., Kec. Kemayoran, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10610",
-    "companyRevenue": 45568798465168,
-    "phoneNumber": {
-      "code": "(456)",
-      "number": "543216549"
-    },
-    "createdDate": "2020-09-26",
-    "updatedDate": ""
-  },
-  {
-    "id": 1601112000,
-    "companyName": "Blibli",
-    "companyAddress": "Soekarno-Hatta St No.785, Babakan Penghulu, Cinambo, Bandung City, West Java 40293",
-    "companyRevenue": 789456513265,
-    "phoneNumber": {
-      "code": "(123)",
-      "number": "456865132"
-    },
-    "createdDate": "2020-09-26",
+    "createdDate": "2020-09-28",
     "updatedDate": ""
   }
 ]

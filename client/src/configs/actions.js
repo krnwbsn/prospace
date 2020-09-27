@@ -148,3 +148,113 @@ export const addDataOfficeFailure = () => {
     type: TYPE.ADD_DATA_OFFICE_FAILURE,
   };
 };
+
+export const loadDataCompanyById = (id) => {
+  return (dispatch) => {
+    dispatch(loadDataCompanyByIdProcess(id));
+    return request
+      .get(`${API_URL}/company/${id}`)
+      .then((response) => {
+        const datas = response.data;
+        dispatch(loadDataCompanyByIdSuccess(datas));
+      })
+      .catch((error) => {
+        console.error(error);
+        dispatch(loadDataCompanyByIdFailure(error.message));
+      });
+  };
+};
+
+export const loadDataCompanyByIdProcess = (id) => {
+  return {
+    type: TYPE.LOAD_DATA_COMPANY_BY_ID,
+    id,
+  };
+};
+
+export const loadDataCompanyByIdSuccess = (datas) => {
+  return {
+    type: TYPE.LOAD_DATA_COMPANY_BY_ID_SUCCESS,
+    datas,
+  };
+};
+
+export const loadDataCompanyByIdFailure = (error) => {
+  return {
+    type: TYPE.LOAD_DATA_COMPANY_BY_ID_FAILURE,
+    data: error,
+  };
+};
+
+export const loadDataOfficeById = (id) => {
+  return (dispatch) => {
+    dispatch(loadDataOfficeByIdProcess(id));
+    return request
+      .get(`${API_URL}/office/${id}`)
+      .then((response) => {
+        const datas = response.data;
+        dispatch(loadDataOfficeByIdSuccess(datas));
+      })
+      .catch((error) => {
+        console.error(error);
+        dispatch(loadDataOfficeByIdFailure(error.message));
+      });
+  };
+};
+
+export const loadDataOfficeByIdProcess = (id) => {
+  return {
+    type: TYPE.LOAD_DATA_OFFICE_BY_ID,
+    id,
+  };
+};
+
+export const loadDataOfficeByIdSuccess = (datas) => {
+  return {
+    type: TYPE.LOAD_DATA_OFFICE_BY_ID_SUCCESS,
+    datas,
+  };
+};
+
+export const loadDataOfficeByIdFailure = (error) => {
+  return {
+    type: TYPE.LOAD_DATA_OFFICE_BY_ID_FAILURE,
+    data: error,
+  };
+};
+
+export const deleteDataOffice = (officeId) => {
+  return (dispatch) => {
+    dispatch(removeDataOffice(officeId));
+    console.log(`${API_URL}/office/${officeId}`)
+    return request
+      .delete(`${API_URL}/office/${officeId}`)
+      .then(() => {
+        dispatch(removeDataOfficeSuccess());
+      })
+      .catch((error) => {
+        console.error(error);
+        dispatch(removeDataOfficeFailure(error));
+      });
+  };
+};
+
+export const removeDataOffice = (officeId) => {
+  return {
+    type: TYPE.REMOVE_DATA_OFFICE,
+    officeId,
+  };
+};
+
+export const removeDataOfficeSuccess = () => {
+  return {
+    type: TYPE.REMOVE_DATA_OFFICE_SUCCESS,
+  };
+};
+
+export const removeDataOfficeFailure = (officeId) => {
+  return {
+    type: TYPE.REMOVE_DATA_OFFICE_FAILURE,
+    officeId,
+  };
+};

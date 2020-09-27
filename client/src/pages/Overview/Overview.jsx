@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { Layout, Row, Col, Modal } from 'antd';
 import { Card } from '../../components';
 import { CompanyForm, OfficeForm } from '../../components/Form';
@@ -13,7 +13,7 @@ import {
 import { connect } from 'react-redux';
 
 const Overview = (props) => {
-  const { confirm } = Modal;
+  const { confirm, info } = Modal;
   const {
     dataCompanies,
     loadDataCompany,
@@ -21,7 +21,6 @@ const Overview = (props) => {
     deleteDataCompany,
     postDataOffice,
   } = props;
-  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     loadDataCompany();
@@ -31,39 +30,45 @@ const Overview = (props) => {
     confirm({
       title: `Do you Want to delete ${companyName}?`,
       onOk() {
-        setIsLoading(true);
-        setTimeout(() => {
-          setIsLoading(false);
-          deleteDataCompany(id);
-        }, 1500);
+        deleteDataCompany(id);
       },
       onCancel() {},
       className: 'modal-comfirmation',
     });
   };
 
+  const showInfoCompany = (values) => {
+    info({
+      title: `Data company has been created`,
+      onOk() {
+        postDataCompany(values);
+        window.location.reload();
+      },
+      className: 'modal-comfirmation',
+    });
+  };
+
+  const showInfoOffice = (values) => {
+    info({
+      title: `Data company has been created`,
+      onOk() {
+        postDataOffice(values);
+        window.location.reload();
+      },
+      className: 'modal-comfirmation',
+    });
+  };
+
   const handleAddDataCompany = (values) => {
-    setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
-      postDataCompany(values);
-    }, 1500);
+    showInfoCompany(values);
   };
 
   const handleAddDataOffice = (values) => {
-    setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
-      postDataOffice(values);
-    }, 1500);
+    showInfoOffice(values);
   };
 
   const handleDeleteCompany = (id, companyName) => {
     showConfirm(id, companyName);
-  };
-
-  const handleDetail = (id) => {
-    console.log(id);
   };
 
   return (
@@ -96,24 +101,30 @@ const Overview = (props) => {
                 <h2>Companies</h2>
               </div>
               <Row className="cards">
-                {dataCompanies.map((item) => (
-                  <Card
-                    className="card"
-                    key={item.id}
-                    companyName={item.companyName}
-                    companyAddress={item.companyAddress}
-                    companyRevenue={item.companyRevenue}
-                    code={item.phoneNumber.code}
-                    number={item.phoneNumber.number}
-                    onDelete={() =>
-                      handleDeleteCompany(item.id, item.companyName)
-                    }
-                    onDetail={() => handleDetail(item.id)}
-                  />
-                ))}
+                {dataCompanies.length > 0 &&
+                  dataCompanies.map((item) => (
+                    <Card
+                      className="card"
+                      companyName={item.companyName}
+                      companyAddress={item.companyAddress}
+                      companyRevenue={item.companyRevenue}
+                      code={item.phoneNumber.code}
+                      number={item.phoneNumber.number}
+                      onDelete={() =>
+                        handleDeleteCompany(item.id, item.companyName)
+                      }
+                      type="company"
+                      link={`/offices/${item.id}`}
+                    />
+                  ))}
               </Row>
             </Col>
           </Row>
+          {dataCompanies.length === 0 && (
+            <div className="no-data">
+              <h1>There is no company created yet</h1>
+            </div>
+          )}
         </div>
       </Layout>
     </Fragment>

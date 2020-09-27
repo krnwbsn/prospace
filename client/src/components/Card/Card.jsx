@@ -1,8 +1,9 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Col } from 'antd';
 import './Card.scss';
 import CloseIcon from '../../assets/icons/close.svg';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const Card = (props) => {
   const {
@@ -12,27 +13,52 @@ const Card = (props) => {
     code,
     number,
     onDelete,
-    onDetail,
+    lat,
+    log,
+    startDate,
+    type,
+    officeName,
+    link,
   } = props;
 
   return (
-    <Fragment>
-      <Col className="card" onClick={onDetail}>
-        <div className="company-header">
-          <h3>{companyName}</h3>
-          <img className="icon" src={CloseIcon} alt="" onClick={onDelete} />
-        </div>
-        <div className="divider-horizontal" />
+    <Col className={type === 'company' ? 'card' : 'card office'}>
+      <div className="company-header">
+        <h3>
+          {type === 'company' ? (
+            <Link to={link}>{companyName}</Link>
+          ) : (
+            officeName
+          )}
+        </h3>
+        <img className="icon" src={CloseIcon} alt="" onClick={onDelete} />
+      </div>
+      <div className="divider-horizontal" />
+      {type === 'company' && (
+        <Link to={link}>
+          <div className="company-informations">
+            <span className="detail">Address:</span>
+            <p>{companyAddress}</p>
+            <span className="detail">Revenue:</span>
+            <p>{companyRevenue}</p>
+            <span className="detail">Phone No:</span>
+            <p>{`${code} ${number}`}</p>
+          </div>
+        </Link>
+      )}
+      {type === 'office' && (
         <div className="company-informations">
-          <span className="detail">Address:</span>
-          <p>{companyAddress}</p>
-          <span className="detail">Revenue:</span>
-          <p>{companyRevenue}</p>
-          <span className="detail">Phone No:</span>
-          <p>{`${code} ${number}`}</p>
+          <span className="detail">Location:</span>
+          <p>
+            Lat - {lat}
+            <br />
+            Log - {log}
+          </p>
+          <span className="detail">Office Start Date:</span>
+          <p>{startDate}</p>
         </div>
-      </Col>
-    </Fragment>
+      )}
+    </Col>
   );
 };
 
@@ -45,6 +71,11 @@ Card.defaultProps = {
   number: '571-8502-2088',
   onDelete: () => {},
   onDetail: () => {},
+  lat: '',
+  log: '',
+  startDate: '6/20/1997',
+  officeName: '',
+  link: '',
 };
 
 Card.propTypes = {
@@ -55,6 +86,10 @@ Card.propTypes = {
   number: PropTypes.string,
   onDelete: PropTypes.func,
   onDetail: PropTypes.func,
+  lat: PropTypes.string,
+  log: PropTypes.string,
+  officeName: PropTypes.string,
+  link: PropTypes.string,
 };
 
 export default Card;

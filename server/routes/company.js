@@ -60,7 +60,7 @@ router.delete('/:id', function (req, res) {
   const data = company.filter((item) => item.id !== parseInt(id));
   writeData(data);
 
-  res.status(204);
+  res.status(204).json(data);
 });
 
 module.exports = router;

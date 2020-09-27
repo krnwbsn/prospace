@@ -4,6 +4,7 @@
   border: 2px solid #ebecf0;
   border-radius: 10px;
   margin: 10px;
+  height: 270px;
 
   .company-header {
     display: flex;
@@ -36,4 +37,8 @@
       color: #808080;
     }
   }
+}
+
+.office {
+  height: 100%;
 }

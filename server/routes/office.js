@@ -18,7 +18,6 @@ router.use(bodyParser.json());
 
 router.get('/:id', function (req, res) {
   const { id } = req.params;
-  console.log(id)
   const data = office.filter(
     (item) => item.companyId === parseInt(id)
   );
@@ -27,8 +26,8 @@ router.get('/:id', function (req, res) {
 });
 
 router.post('/', function (req, res) {
-  const id = moment().unix() + 12;
-  const { companyName, officeName, lat, log, startDate, companyId } = req.body;
+  const id = moment().unix();
+  const { companyId, officeName, lat, log, startDate } = req.body;
   const cap = (text) => {
     return text.replace(/(^\w{1})|(\s{1}\w{1})/g, (match) =>
       match.toUpperCase()
@@ -37,10 +36,9 @@ router.post('/', function (req, res) {
 
   const item = {
     officeId: id,
-    companyId: companyId,
-    companyName: cap(companyName),
+    companyId: parseInt(companyId),
     officeName: cap(officeName),
-    location: { lat: parseFloat(lat), log: parseFloat(log) },
+    location: { lat: parseFloat(lat).toFixed(2), log: parseFloat(log).toFixed(2) },
     startDate: moment(startDate).format('YYYY-MM-DD'),
     createdDate: moment().format('YYYY-MM-DD'),
     updatedDate: '',
@@ -57,7 +55,7 @@ router.delete('/:officeId', function (req, res) {
   const data = office.filter((item) => item.officeId !== parseInt(officeId));
   writeData(data);
 
-  res.status(204);
+  res.status(204).json(data);
 });
 
 module.exports = router;
