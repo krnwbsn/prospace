@@ -4,7 +4,7 @@ import { API_URL } from '../services';
 
 const request = axios.create({
   baseURL: API_URL,
-  timout: 1000,
+  timeout: 1000,
 });
 
 export const loadDataCompany = () => {
@@ -44,9 +44,9 @@ export const loadDataCompanyFailure = (error) => {
 };
 
 export const postDataCompany = (payload) => {
+  console.log(payload);
   return (dispatch) => {
-    dispatch(addDataCompanyProcess(payload));
-    console.log(payload);
+    dispatch(addDataCompanyProcess());
     return request
       .post(`${API_URL}/company`, payload)
       .then((response) => {
@@ -55,15 +55,14 @@ export const postDataCompany = (payload) => {
       })
       .catch((error) => {
         console.error(error);
-        dispatch(addDataCompanyFailure([]));
+        dispatch(addDataCompanyFailure(error));
       });
   };
 };
 
-export const addDataCompanyProcess = (payload) => {
+export const addDataCompanyProcess = () => {
   return {
     type: TYPE.ADD_DATA_COMPANY,
-    payload,
   };
 };
 
@@ -74,24 +73,23 @@ export const addDataCompanySuccess = (payload) => {
   };
 };
 
-export const addDataCompanyFailure = (id) => {
+export const addDataCompanyFailure = () => {
   return {
     type: TYPE.ADD_DATA_COMPANY_FAILURE,
-    id,
   };
 };
 
 export const deleteDataCompany = (id) => {
   return (dispatch) => {
     dispatch(removeDataCompany(id));
-    return axios
+    return request
       .delete(`${API_URL}/company/${id}`)
       .then(() => {
-        dispatch(loadDataCompany());
+        dispatch(removeDataCompanySuccess());
       })
       .catch((error) => {
         console.error(error);
-        dispatch(loadDataCompanyFailure(error));
+        dispatch(removeDataCompanyFailure(error));
       });
   };
 };
@@ -100,5 +98,53 @@ export const removeDataCompany = (id) => {
   return {
     type: TYPE.REMOVE_DATA_COMPANY,
     id,
+  };
+};
+
+export const removeDataCompanySuccess = () => {
+  return {
+    type: TYPE.REMOVE_DATA_COMPANY_SUCCESS,
+  };
+};
+
+export const removeDataCompanyFailure = (id) => {
+  return {
+    type: TYPE.REMOVE_DATA_COMPANY_FAILURE,
+    id,
+  };
+};
+
+export const postDataOffice = (payload) => {
+  console.log(payload);
+  return (dispatch) => {
+    dispatch(addDataOfficeProcess());
+    return request
+      .post(`${API_URL}/office`, payload)
+      .then((response) => {
+        dispatch(addDataOfficeSuccess(response.data));
+      })
+      .catch((error) => {
+        console.error(error);
+        dispatch(addDataOfficeFailure(error));
+      });
+  };
+};
+
+export const addDataOfficeProcess = () => {
+  return {
+    type: TYPE.ADD_DATA_OFFICE,
+  };
+};
+
+export const addDataOfficeSuccess = (payload) => {
+  return {
+    type: TYPE.ADD_DATA_OFFICE_SUCCESS,
+    payload,
+  };
+};
+
+export const addDataOfficeFailure = () => {
+  return {
+    type: TYPE.ADD_DATA_OFFICE_FAILURE,
   };
 };

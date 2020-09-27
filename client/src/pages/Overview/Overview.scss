@@ -1,5 +1,24 @@
 @import '~antd/lib/style/index';
 
+.ant-modal {
+  top: 35% !important;
+  width: 380px !important;
+
+  &-confirm,
+  &-body {
+    padding: 18px !important;
+
+    button {
+      border-radius: 5px;
+      width: 80px;
+    }
+  }
+
+  &-content {
+    border-radius: 10px !important;
+  }
+}
+
 .container {
   width: 100%;
   padding: 20px 10px;
@@ -19,92 +38,23 @@
       display: flex;
 
       .content {
-        padding: 5px 10px 10px 10px;
+        padding: 5px 10px 10px 10px !important;
+
+        .form {
+          padding: 5px 10px 10px 10px;
+        }
 
         .cards {
           max-width: 760px !important;
+
+          .card {
+            cursor: pointer;
+          }
         }
 
         h2 {
           font-weight: 400;
           color: #808080;
-        }
-
-        .form-section {
-          margin-top: -10px;
-          padding: 0px 10px;
-
-          .form-group {
-            margin: 0px;
-
-            label {
-              font-weight: 700;
-            }
-
-            input {
-              border-radius: 5px;
-              margin-top: -5px;
-            }
-
-            button {
-              width: 100%;
-              border-radius: 5px;
-              margin: 20px 0px;
-              background-color: #ebecf0;
-              color: #808080;
-              font-weight: 600;
-              border: none;
-            }
-
-            .select {
-              color: #a9a9a9;
-              margin-top: -5px;
-
-              .ant-select-selector {
-                border-radius: 5px;
-                height: 32px;
-              }
-            }
-
-            .ant-form-item-control {
-              &-input {
-                &-content {
-                  .date-picker {
-                    width: 100%;
-                    margin-top: -5px !important;
-                    height: 32px !important;
-                    border-radius: 5px;
-                  }
-                }
-              }
-            }
-          }
-
-          .phone-number {
-            display: flex;
-            justify-content: space-between;
-
-            .code {
-              width: 20%;
-              margin-right: 4%;
-            }
-            .number {
-              width: 76%;
-            }
-          }
-
-          .location {
-            display: flex;
-            justify-content: space-between;
-
-            .lat {
-              width: 48%;
-              margin-right: 4%;
-            }
-            .log {
-              width: 48%;
-            }
-          }
         }
       }
 

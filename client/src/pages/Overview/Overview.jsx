@@ -1,58 +1,69 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import {
-  Form,
-  Input,
-  Button,
-  Layout,
-  Row,
-  Col,
-  Select,
-  DatePicker,
-} from 'antd';
+import { Layout, Row, Col, Modal } from 'antd';
 import { Card } from '../../components';
+import { CompanyForm, OfficeForm } from '../../components/Form';
 import './Overview.scss';
 import 'antd/dist/antd.css';
 import {
   loadDataCompany,
   deleteDataCompany,
   postDataCompany,
+  postDataOffice,
 } from '../../configs/actions';
 import { connect } from 'react-redux';
 
 const Overview = (props) => {
-  const { dataCompanies, loadDataCompany, postDataCompany } = props;
-  const { Option } = Select;
-  const [form] = Form.useForm();
-  const initialDataCompanyState = {
-    companyName: '',
-    companyAddress: '',
-    companyRevenue: '',
-    code: '',
-    number: '',
-  };
-  const [companyPayload, setCompanyPayload] = useState(initialDataCompanyState);
+  const { confirm } = Modal;
+  const {
+    dataCompanies,
+    loadDataCompany,
+    postDataCompany,
+    deleteDataCompany,
+    postDataOffice,
+  } = props;
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     loadDataCompany();
   }, [loadDataCompany]);
 
-  const handleChange = (value) => {
-    console.log(`selected ${value}`);
+  const showConfirm = (id, companyName) => {
+    confirm({
+      title: `Do you Want to delete ${companyName}?`,
+      onOk() {
+        setIsLoading(true);
+        setTimeout(() => {
+          setIsLoading(false);
+          deleteDataCompany(id);
+        }, 1500);
+      },
+      onCancel() {},
+      className: 'modal-comfirmation',
+    });
   };
 
-  const onChange = (date, dateString) => {
-    console.log(date, dateString);
+  const handleAddDataCompany = (values) => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+      postDataCompany(values);
+    }, 1500);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    postDataCompany(companyPayload);
-    setCompanyPayload(initialDataCompanyState);
+  const handleAddDataOffice = (values) => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+      postDataOffice(values);
+    }, 1500);
   };
 
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setCompanyPayload({ ...companyPayload, [name]: value });
+  const handleDeleteCompany = (id, companyName) => {
+    showConfirm(id, companyName);
+  };
+
+  const handleDetail = (id) => {
+    console.log(id);
   };
 
   return (
@@ -64,115 +75,18 @@ const Overview = (props) => {
               <div>
                 <h2>Create Company</h2>
               </div>
-              <Form
-                className="form-section"
-                form={form}
-                layout="vertical"
-              >
-                <Form.Item className="form-group" label="Name:" required>
-                  <Input
-                    type="text"
-                    placeholder="name"
-                    name="companyName"
-                    value={companyPayload.companyName}
-                    onChange={handleInputChange}
-                  />
-                </Form.Item>
-                <Form.Item className="form-group" label="Address:" required>
-                  <Input
-                    type="text"
-                    placeholder="address"
-                    name="companyAddress"
-                    value={companyPayload.companyAddress}
-                    onChange={handleInputChange}
-                  />
-                </Form.Item>
-                <Form.Item className="form-group" label="Revenue:" required>
-                  <Input
-                    type="number"
-                    placeholder="revenue"
-                    name="companyRevenue"
-                    value={companyPayload.companyRevenue}
-                    onChange={handleInputChange}
-                  />
-                </Form.Item>
-                <Form.Item
-                  className="form-group phone-number"
-                  label="Phone No:"
-                  required
-                >
-                  <Input
-                    type="number"
-                    className="code"
-                    placeholder="code"
-                    name="code"
-                    value={companyPayload.code}
-                    onChange={handleInputChange}
-                  />
-                  <Input
-                    type="number"
-                    className="number"
-                    placeholder="number"
-                    name="number"
-                    value={companyPayload.number}
-                    onChange={handleInputChange}
-                  />
-                </Form.Item>
-                <Form.Item className="form-group">
-                  <Button type="submit" onClick={(event) => handleSubmit(event)}>Create</Button>
-                </Form.Item>
-              </Form>
+              <CompanyForm className="form" onSubmit={handleAddDataCompany} />
             </Col>
             <div className="divider-vertical" />
             <Col className="content gutter-row">
               <div>
                 <h2>Create Office</h2>
               </div>
-              <Form className="form-section" form={form} layout="vertical">
-                <Form.Item className="form-group" label="Name:" required>
-                  <Input placeholder="name" />
-                </Form.Item>
-                <Form.Item
-                  className="form-group location"
-                  label="Location:"
-                  required
-                >
-                  <Input type="number" className="lat" placeholder="latitude" />
-                  <Input
-                    type="number"
-                    className="log"
-                    placeholder="longitude"
-                  />
-                </Form.Item>
-                <Form.Item
-                  className="form-group"
-                  label="Office Start Date:"
-                  required
-                >
-                  <DatePicker
-                    className="date-picker"
-                    onChange={onChange}
-                    placeholder="date"
-                  />
-                </Form.Item>
-                <Form.Item className="form-group" label="Company:" required>
-                  <Select
-                    className="select"
-                    defaultValue="select company"
-                    onChange={handleChange}
-                  >
-                    <Option value="select company" disabled>
-                      select company
-                    </Option>
-                    <Option value="jack">Jack</Option>
-                    <Option value="lucy">Lucy</Option>
-                    <Option value="Yiminghe">yiminghe</Option>
-                  </Select>
-                </Form.Item>
-                <Form.Item className="form-group">
-                  <Button type="secondary">Create</Button>
-                </Form.Item>
-              </Form>
+              <OfficeForm
+                className="form"
+                options={dataCompanies}
+                onSubmit={handleAddDataOffice}
+              />
             </Col>
           </Row>
           <div className="divider-horizontal" />
@@ -184,12 +98,17 @@ const Overview = (props) => {
               <Row className="cards">
                 {dataCompanies.map((item) => (
                   <Card
+                    className="card"
                     key={item.id}
                     companyName={item.companyName}
                     companyAddress={item.companyAddress}
                     companyRevenue={item.companyRevenue}
                     code={item.phoneNumber.code}
                     number={item.phoneNumber.number}
+                    onDelete={() =>
+                      handleDeleteCompany(item.id, item.companyName)
+                    }
+                    onDetail={() => handleDetail(item.id)}
                   />
                 ))}
               </Row>
@@ -211,6 +130,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     loadDataCompany: () => dispatch(loadDataCompany()),
     postDataCompany: (payload) => dispatch(postDataCompany(payload)),
+    deleteDataCompany: (id) => dispatch(deleteDataCompany(id)),
+    postDataOffice: (payload) => dispatch(postDataOffice(payload)),
   };
 };
 

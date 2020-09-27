@@ -1,0 +1,42 @@
+@import '~antd/lib/style/index';
+
+.form-section {
+  margin: -10px 10px !important;
+
+  .form-group {
+    margin: 0px;
+
+    label {
+      font-weight: 700;
+    }
+
+    input {
+      border-radius: 5px;
+      margin-top: -5px;
+    }
+
+    button {
+      width: 100%;
+      border-radius: 5px;
+      margin: 20px 0px;
+      background-color: #ebecf0;
+      color: #808080;
+      font-weight: 600;
+      border: none;
+    }
+  }
+
+  .phone-number {
+    display: flex !important;
+    justify-content: space-between !important;
+
+    .code {
+      width: 20%;
+      margin-right: 3%;
+    }
+
+    .number {
+      width: 77%;
+    }
+  }
+}
