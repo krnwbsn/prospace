@@ -11,6 +11,7 @@ import {
   postDataOffice,
 } from '../../configs/actions';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 const Overview = (props) => {
   const { confirm, info } = Modal;
@@ -104,6 +105,7 @@ const Overview = (props) => {
                 {dataCompanies.length > 0 &&
                   dataCompanies.map((item) => (
                     <Card
+                      key={item.id}
                       className="card"
                       companyName={item.companyName}
                       companyAddress={item.companyAddress}
@@ -144,6 +146,25 @@ const mapDispatchToProps = (dispatch) => {
     deleteDataCompany: (id) => dispatch(deleteDataCompany(id)),
     postDataOffice: (payload) => dispatch(postDataOffice(payload)),
   };
+};
+
+Overview.propTypes = {
+  dataCompanies: PropTypes.arrayOf(
+    PropTypes.shape({
+      companyName: PropTypes.string,
+      companyAddress: PropTypes.string,
+      companyRevenue: PropTypes.number,
+      phoneNumber: PropTypes.shape({
+        code: PropTypes.string,
+        number: PropTypes.string,
+      }),
+      id: PropTypes.number,
+    })
+  ).isRequired,
+  loadDataCompany: PropTypes.func.isRequired,
+  postDataCompany: PropTypes.func.isRequired,
+  deleteDataCompany: PropTypes.func.isRequired,
+  postDataOffice: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Overview);

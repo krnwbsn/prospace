@@ -11,6 +11,7 @@ import {
 } from '../../configs/actions';
 import { connect } from 'react-redux';
 import { formatDate } from '../../utils/text';
+import PropTypes from 'prop-types';
 
 const Offices = (props) => {
   const {
@@ -51,7 +52,7 @@ const Offices = (props) => {
       <Layout className="container">
         <div className="box">
           {dataCompanyById.map((item) => (
-            <Fragment>
+            <Fragment key={item.id}>
               <div>
                 <h2 className="name">{item.companyName}</h2>
               </div>
@@ -123,6 +124,34 @@ const mapDispatchToProps = (dispatch) => {
     loadDataOfficeById: (id) => dispatch(loadDataOfficeById(id)),
     deleteDataOffice: (officeId) => dispatch(deleteDataOffice(officeId)),
   };
+};
+
+Offices.propTypes = {
+  dataCompanyById: PropTypes.arrayOf(
+    PropTypes.shape({
+      companyName: PropTypes.string,
+      companyAddress: PropTypes.string,
+      companyRevenue: PropTypes.number,
+      phoneNumber: PropTypes.shape({
+        code: PropTypes.string,
+        number: PropTypes.string,
+      }),
+      id: PropTypes.number,
+    })
+  ).isRequired,
+  loadDataCompanyById: PropTypes.func.isRequired,
+  loadDataOfficeById: PropTypes.func.isRequired,
+  dataOfficeById: PropTypes.arrayOf(
+    PropTypes.shape({
+      officeId: PropTypes.number,
+      officeName: PropTypes.string,
+      lat: PropTypes.string,
+      log: PropTypes.string,
+      startDate: PropTypes.string
+    })
+  ).isRequired,
+  match: PropTypes.object,
+  deleteDataOffice: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Offices);

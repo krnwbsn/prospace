@@ -66,16 +66,10 @@ const OfficeForm = (props) => {
   );
 };
 
-OfficeForm.defaultProps = {
-  options: [],
-  handleSubmit: () => {},
-  onSubmit: () => {},
-};
-
 OfficeForm.propTypes = {
-  options: PropTypes.array,
-  handleSubmit: PropTypes.func,
-  onSubmit: PropTypes.func,
+  options: PropTypes.array.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
 };
 
 export default OfficeForm;
